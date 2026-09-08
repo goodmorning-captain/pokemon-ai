@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment / secrets
+.env
+
+# Scraped data
+data/raw/
+
+# Generated/processed data
+data/processed/
+
+# macOS
+.DS_Store

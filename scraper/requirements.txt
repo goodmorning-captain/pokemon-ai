@@ -1,0 +1,6 @@
+selenium
+pandas
+tqdm
+
+[A[B[D[D
+:wq
