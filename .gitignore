@@ -13,5 +13,8 @@ data/raw/
 # Generated/processed data
 data/processed/
 
+# Checkpoints
+checkpoints/
+
 # macOS
 .DS_Store

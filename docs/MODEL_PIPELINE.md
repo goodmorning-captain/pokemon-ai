@@ -15,11 +15,13 @@ format/reg        (regulation tag: later)
          │
          └────────┬────────┘
                   ↓
-           vocab + tensors     ← you are here
+           vocab + tensors
            teams.pt
            matches.jsonl
                   ↓
-           PyTorch Dataset
+           PyTorch Dataset     ← you are here
+           + team encoder
+           + InfoNCE loop
                   ↓
            categorical IDs
                   ↓
@@ -135,7 +137,13 @@ Until retrieval looks like archetypes, do not build the generator.
 
 ### InfoNCE Dataset / training loop
 
-Not in this pass. Next modeling step: `VgcTeamDataset` over `teams.pt`, augmentation views, then the encoder. Matchup ranking is a second head on `matches.jsonl`.
+`VgcTeamDataset` (`dataset/vgc_dataset.py`) loads `teams.pt`, splits by `tournament_id`, and yields two augmented views (drop a slot, mask an item, or mask a move). `model/encoder.py` embeds each Pokémon, mean-pools the team, and projects to `z` for NT-Xent InfoNCE. Train with:
+
+```bash
+python model/train.py
+```
+
+Checkpoints go to `checkpoints/best.pt` (gitignored). `h` (pre-projector) is what later kNN retrieval should use. Matchup ranking is still a later head on `matches.jsonl`.
 
 ## Suggested order of work
 

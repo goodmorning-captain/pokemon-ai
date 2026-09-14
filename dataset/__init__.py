@@ -1,1 +1,1 @@
-"""Vocab + team tensors from processed standings."""
+"""Vocab, team tensors, and the PyTorch Dataset for InfoNCE."""
